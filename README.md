@@ -7,7 +7,13 @@
 ### Technology Stack:
 
 Front End: HTML5, CSS3 and Java Script  
-Back End: Java, Spring Boot, Oracle/MySQL  
+Back End: Java, Spring Boot, Oracle/MySQL
+
+### Project Role's:
+
+    Jonathan: HTML5, CSS3 and Java Script
+    Dylan: Backend, specifically servlets
+    Ian: Maven and packaging
 
 ### Background of the project:
 

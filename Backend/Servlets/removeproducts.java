@@ -34,40 +34,23 @@ public class updateproducts extends HttpServlet{
       try {
          // Register JDBC driver
          Class.forName("com.mysql.jdbc.Driver");
-	//Class.forName("oracle.jdbc.driver.OracleDriver");
+		//Class.forName("oracle.jdbc.driver.OracleDriver");
 
          // Open a connection
          Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
+		
          // Execute SQL query
-         Statement stmt = conn.createStatement();
-         String sql;
-         sql = "SELECT * FROM sales";
-         ResultSet rs = stmt.executeQuery(sql);
-		 PreparedStatement statement = conn.prepareStatement("INSERT INTO `healthcare`.`products`(`product_id`,`picture_link`,`name`,`description`,`brand`,`quantity`,`price`,`active`)VALUES(\"1\",\"test1\",\"testname1\",\"testdesc1\",\"testbrand1\",\"50\",\"9.99\",\"1\");");
-         
-		 String product_name = req.getParameter("whatever it's named in the html needs to go here");
-		 String product_category = req.getParameter("whatever it's named in the html needs to go here");
-		 String product_brand = req.getParameter("whatever it's named in the html needs to go here");
-		 int quantity = req.getParameter("whatever it's named in the html needs to go here");
-		 float price = req.getParameter("whatever it's named in the html needs to go here");
-		 boolean active = req.getParameter("whatever it's named in the html needs to go here");
-		 
-		 int i = statement.executeUpdate();
+		 //PreparedStatement statement = conn.prepareStatement("INSERT INTO `healthcare`.`products`(`product_id`,`picture_link`,`name`,`description`,`brand`,`quantity`,`price`,`active`)VALUES(\"1\",\"test1\",\"testname1\",\"testdesc1\",\"testbrand1\",\"50\",\"9.99\",\"1\");");
+         String product_name = req.getParameter("whatever it's named in the html needs to go here");
+		 //String query = "DELETE FROM `healthcare`.`products` where name=%s".formatted(product_name);
+		 //String str = "First %s, then %s".formatted(foo, bar);     
+		 String query = "DELETE FROM `healthcare`.`products` WHERE name="+product_name;
+		 int i = statement.executeUpdate(query);
          if (i>0){
              out.println("inserted successfully");
          }
          else
              out.println("insert failed");
-         // Extract data from result set (not necessary for this servlet)
-         while(rs.next()){
-            //Retrieve by column name
-			//int transaction_id = rs.getInt("transaction_id");
-
-            //Display values
-			//out.println("transactionID is: "+transaction_id + "<br>");
-         }
-         out.println("</body></html>");
 
          // Clean-up environment
          rs.close();

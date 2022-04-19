@@ -1,18 +1,147 @@
+	*{box-sizing: border-box;
+	}
+	.header{
+		background-color: #f1f1f1;
+		padding: 55px;
+		margin-bottom: 15px;
+	    text-align: center;
+	}
+	table,th,td {
+	border : 1px solid black;
+	}
+	th,td {
+	padding: 5px;
+	}
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		margin: 0;
+		background-color: #f1f1f1;
+	}
 
-.header{
+	#bodyMargins{
+		margin-left: .8%;
+		margin-right: 5%;
+	}
+	h1 {
+		margin-left: 370px;
+		border-bottom: 3px solid silver;
+		padding-bottom: 20px;
+	}
+	ul.topnav {
+		list-style-type: none;
+		margin: 5;
+		padding: 5;
+		overflow: hidden;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		font-size: 22px;
+		font-family: sans-serif;
+		border-bottom: 3px solid Silver;
+		padding-bottom: 15px;
+	}
+	ul.topnav li{
+		float: left;
+	}
+	ul.topnav li a {
+	    color: Black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+			margin-top: 15px;
+	}
+	ul.topnav li.right {
+		float: right;
+		padding-right: 50px
+	}
+	ul.topnav li a.active {border-bottom: 3px solid black;}
+	p {
+	 font-size: 23px;
+	 margin-left: 53px;
+	}
+	.btn-list{
+		padding-left: 57px;
+		float: left;
+		width: 20%;
+	}
+	.btn-list button {
+  border: 1px solid black;
+  padding: 10px 25px;
+  cursor: pointer;
+  display: block;
+	font-family: sans-serif;
 	background-color: #f1f1f1;
-	padding: 55px;
-	margin-bottom: 15px;
-    text-align: center;
+	text-decoration: none;
 }
-table,th,td {
-border : 1px solid black;
-border-collapse: collapse;
+.btn-list button:hover {
+  border: 3px solid black;
 }
-th,td {
-padding: 5px;
+
+.Pictures {
+  max-width: 1000px;
+  position: relative;
+	length: 800px;
+	width: 800px;
+	float: left;
+	border: 3px, solid black;
 }
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	margin: 0;
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.mySlides {
+  display:inline;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+
+}
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+p.medicines {
+	padding-top: 500px;
+	padding-left: 295px;
+	border-bottom: 3px solid silver;
+}
+.drugs {
+	border: 3px solid black;
+	padding-left: 350px;
 }

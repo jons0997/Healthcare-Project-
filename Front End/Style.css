@@ -1,21 +1,20 @@
 	*{box-sizing: border-box;
 	}
+	html {
+		background-color: white;
+
+
+	}
 	.header{
-		background-color: #f1f1f1;
+		background-color: white;
 		padding: 55px;
 		margin-bottom: 15px;
 	    text-align: center;
 	}
-	table,th,td {
-	border : 1px solid black;
-	}
-	th,td {
-	padding: 5px;
-	}
 	body {
 		font-family: Arial, Helvetica, sans-serif;
 		margin: 0;
-		background-color: #f1f1f1;
+		background-color: white;
 	}
 
 	#bodyMargins{
@@ -32,12 +31,10 @@
 		margin: 5;
 		padding: 5;
 		overflow: hidden;
-		position: -webkit-sticky;
-		position: sticky;
 		top: 0;
 		font-size: 22px;
 		font-family: sans-serif;
-		border-bottom: 3px solid Silver;
+		border-bottom: 3px solid black;
 		padding-bottom: 15px;
 	}
 	ul.topnav li{
@@ -52,9 +49,8 @@
 	}
 	ul.topnav li.right {
 		float: right;
-		padding-right: 50px
 	}
-	ul.topnav li a.active {border-bottom: 3px solid black;}
+	ul.topnav li a.active {border-bottom: 5px solid red;}
 	p {
 	 font-size: 23px;
 	 margin-left: 53px;
@@ -65,6 +61,7 @@
 		width: 20%;
 	}
 	.btn-list button {
+	background-color: grey;
   border: 1px solid black;
   padding: 10px 25px;
   cursor: pointer;
@@ -78,12 +75,11 @@
 }
 
 .Pictures {
-  max-width: 1000px;
   position: relative;
-	length: 800px;
-	width: 800px;
 	float: left;
-	border: 3px, solid black;
+}
+.Pictures img:not(:first-child) {
+    display: none;
 }
 
 .prev, .next {
@@ -93,17 +89,19 @@
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: white;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
 }
-
+.prev{
+	margin-left:10px;
+	right:100%;
+		}
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+	margin-right:10px;
+	left:100%;
 }
 
 .mySlides {
@@ -113,35 +111,42 @@
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-
-}
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
 p.medicines {
-	padding-top: 500px;
+	padding-top: 600px;
 	padding-left: 295px;
 	border-bottom: 3px solid silver;
 }
-.drugs {
+table.viewed {
 	border: 3px solid black;
-	padding-left: 350px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.us{
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid black;
+}
+.Pictures img:not(:first-child) {
+    display: none;
+}
+.log {
+ border: 5px solid black;
+ margin-left: auto;
+ margin-right: auto;
+}
+.container {
+  padding: 16px;
+}
+input[type=text], input[type=password] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.Sign{
+	border: 5px solid black;
+	margin-left: auto;
+	margin-right: auto;
 }

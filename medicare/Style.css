@@ -137,10 +137,6 @@ table.viewed {
 .container {
   padding: 16px;
 }
-.product-image{
-	width:500px;
-	height:600px;
-}
 input[type=text], input[type=password] {
   width: 60%;
   padding: 12px 20px;

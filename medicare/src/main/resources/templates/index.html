@@ -1,46 +1,25 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Healthcare project</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
-  <ul class="topnav">
-    <li><a class="active" href="Index.html" id="index">Medicare</a></li>
-    <li><a href="About.html" id="About">About</a></li>
-    <li><a href="Contact.html" id="Contact">Contact</a></li>
-    <li><a href="Products.html" id="Products">View Products</a></li>
-    <li class="right"><a href="Login.html" id="Login">Login</a></li>
-    <li class="right"><a href="SignUp.html" id="SignUp">Sign Up</a></li>
-  </ul>
-  </head>
-  <body>
-  <p>Categories</p>
-  <div class="btn-list">
-  <button><a href="#Products">Antipyretics</a></button>
-  <button><a href="#Products">Analgesics</a></button>
-  <button><a href="#Products">Antibiotics</a></button>
-  </div>
-  <div class="Pictures">
-    <img class="mySlides" src="pics/Best-online-Medicine-Delivery-App.jpg"style="width = 100%">
-    <img class="mySlides" src="pics/banner-medicine-ordering-apps-1.jpg"style="width = 100%">
-    <img class="mySlides" src="pics/online-pharmacy-store-service-hand-hold-smart-phone_48369-18742-1200x675.jpg"style="width = 100%">
-    <img class="mySlides" src="pics/medicine-delivery-app.jpg"style="width = 100%">
-    <button class="prev" onclick="plusDivs(-1)">&#10094;</button>
-    <button class="next" onclick="plusDivs(+1)">&#10095;</button>
-  </div>
-    <p class="medicines">Most Viewed Medicines</p>
-    <table class="viewed">
-      <tr>
-        <td><img src="pics/Ibuprofen-Tablets-400mg-10-10-prime-S-Box-Antipyretic-Analgesic-and-Anti-Inflammatory-Drugs.jpg"></td>
-        <td><img src="pics/analgesic-pills-3d-rendering-isolated-260nw-396863362.jpg"></td>
-        <td><img src="pics/antibiotic-resistance.jpg"></td>
-      </tr>
-    </table>
-
-
-
-
-  </body>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Books Shop Online</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title">Shopping Cart Demo</div>
+      <div class="demo-container">
+         <h3>Demo content</h3>
+         <ul>
+            <li>Buy online</li>
+            <li>Admin pages</li>
+            <li>Reports</li>
+         </ul>
+      </div>
+      
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
 </html>

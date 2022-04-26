@@ -2,24 +2,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-   <div class="site-name">Online Shop</div>
-  
-   <div class="header-bar">
-      <th:block sec:authorize="isAuthenticated()">
-         Hello
-         <a th:href="@{/admin/accountInfo}" th:utext="${#request.userPrincipal.name}">..</a>
-         &nbsp;|&nbsp;
-         <a th:href="@{/admin/logout}">Logout</a>
-      </th:block>
-      
-      <th:block sec:authorize="!isAuthenticated()">
-         <a th:href="@{/admin/login}">Login</a>
-      </th:block>
-      
-      <th:block sec:authorize="!isAuthenticated()">
-      	<a th:href="@{/signup}">Sign up</a>
-      </th:block>
-   </div>
-  
+  <ul class="topnav">
+    <li><a class="active" href="index.html" id="index">Medicare</a></li>
+    <li><a href="about.html" id="About">About</a></li>
+    <li><a href="contact.html" id="Contact">Contact</a></li>
+    <li><a href="products.html" id="Products">View Products</a></li>
+    <li class="right"><a href="login.html" id="Login">Login</a></li>
+    <li class="right"><a href="signup.html" id="SignUp">Sign Up</a></li>
+  </ul>
 </div>
  

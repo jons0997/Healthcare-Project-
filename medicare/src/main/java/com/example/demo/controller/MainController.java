@@ -76,12 +76,41 @@ public class MainController {
       return "index";
    }
    
+   @RequestMapping("about")
+   public String about() {
+      return "about";
+   } 
+   
+   @RequestMapping("contact")
+   public String contact() {
+	  return "contact";
+	   }
+   
+   @RequestMapping("products")
+   public String products() {
+      return "products";
+		   } 
+   
+   @RequestMapping("login")
+   public String login() {
+	   return "login";
+			   }
+   
+   @RequestMapping("signup")
+   public String signup() {
+      return "signup";
+   }
+   
+   @RequestMapping("logout")
+   public String logout() {
+      return "logout";
+   }
+   
    // GET: Show Sign up Page
    @RequestMapping(value= { "/signup" }, method = RequestMethod.GET)
    		public String signup(Model model) {
 	   	return "signup";
    }
-
    // Product List
    @RequestMapping({ "/productList" })
    public String listProductHandler(Model model, //

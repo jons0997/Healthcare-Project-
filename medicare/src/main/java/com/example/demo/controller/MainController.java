@@ -9,9 +9,11 @@ import com.example.demo.dao.OrderDAO;
 import com.example.demo.dao.ProductDAO;
 import com.example.demo.entity.Product;
 import com.example.demo.form.CustomerForm;
+import com.example.demo.form.NewUserForm;
 import com.example.demo.model.CartInfo;
 import com.example.demo.model.CustomerInfo;
 import com.example.demo.model.ProductInfo;
+import com.example.demo.model.NewUserInfo;
 import com.example.demo.pagination.PaginationResult;
 import com.example.demo.utils.Utils;
 import com.example.demo.validator.CustomerFormValidator;
@@ -72,6 +74,12 @@ public class MainController {
    @RequestMapping("/")
    public String home() {
       return "index";
+   }
+   
+   // GET: Show Sign up Page
+   @RequestMapping(value= { "/signup" }, method = RequestMethod.GET)
+   		public String signup(Model model) {
+	   	return "signup";
    }
 
    // Product List
@@ -170,6 +178,29 @@ public class MainController {
       return "shoppingCartCustomer";
    }
 
+   // POST: Save new user
+   @RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
+   public String newUserSave(HttpServletRequest request, //
+		   Model model, //
+		   @ModelAttribute("newUserForm") @Validated NewUserForm newUserForm, //
+		   BindingResult result, //
+		   final RedirectAttributes redirectAttributes) {
+	   
+	   if (result.hasErrors()) {
+		   newUserForm.setValid(false);
+		   // Forward to reenter new user info
+		   return "signup";
+	   }
+	   
+	   newUserForm.setValid(true);
+	   
+	   //NEED TO FIGURE OUT SAVING USER BELOW
+	   NewUserInfo userInfo = Utils.getUserInfo(request);
+	   System.out.println("SIGNUP CALLED");
+	   //System.out.println(userInfo.getUsername());
+	   //UserInfo userInfo = "";
+	   return "redirect:/";
+   }
    // POST: Save customer information.
    @RequestMapping(value = { "/shoppingCartCustomer" }, method = RequestMethod.POST)
    public String shoppingCartCustomerSave(HttpServletRequest request, //
@@ -206,6 +237,13 @@ public class MainController {
       }
       model.addAttribute("myCart", cartInfo);
 
+      try {
+          orderDAO.saveOrder(cartInfo);
+       } catch (Exception e) {
+
+          return "shoppingCartConfirmation";
+       }
+      
       return "shoppingCartConfirmation";
    }
 

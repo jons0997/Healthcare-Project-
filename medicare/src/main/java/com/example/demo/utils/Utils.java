@@ -3,6 +3,7 @@ package com.example.demo.utils;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.model.CartInfo;
+import com.example.demo.model.NewUserInfo;
 
 public class Utils {
 
@@ -33,4 +34,11 @@ public class Utils {
       return (CartInfo) request.getSession().getAttribute("lastOrderedCart");
    }
    
+   public static NewUserInfo getUserInfo(HttpServletRequest request) {
+	   return (NewUserInfo) request.getSession().getAttribute("userInfo");
+   }
+   
+   public static void storeUserInfo(HttpServletRequest request, NewUserInfo userInfo) {
+	   request.getSession().setAttribute("userInfo", userInfo);
+   }
 }

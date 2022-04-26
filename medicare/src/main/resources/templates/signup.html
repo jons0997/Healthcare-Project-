@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Healthcare project</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+  <!--<script src="index.js"></script>-->
   <ul class="topnav">
     <li><a href="Index.html" id="index">Medicare</a></li>
     <li><a href="About.html" id="About">About</a></li>
@@ -15,13 +15,37 @@
   </ul>
   </head>
   <body>
+  	<form method="POST"
+        th:action="@{/j_spring_security_check}">
+        <table>
+             <tr>
+                <td>User Name *</td>
+                <td><input name="userName" /></td>
+             </tr>
+             <tr>
+                <td>Password *</td>
+                <td><input type="password" name="password" /></td>
+             </tr>
+             <tr>
+                 <td>&nbsp;</td>
+             <td>
+                 <input type="submit" value="Sign Up" />
+                 <input type="reset"  value="Reset" />
+             </td>
+          </tr>
+        </table>
+    </form>	
     <h2>Create Account</h2>
-    <div class="Sign">
-      <input type="text" placeholder="Enter Email" name="Email" required>
-      <input type="text" placeholder="Confirm Email" name="Email" required>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-      <input type="password" placeholder="Confirm Password" name="psw" required>
-      <button type="submit">SignUp</button>
-    </div>
+    <form method="POST" th:action="@{/signup}">
+	    <div class="Sign">
+	      <input type="text" placeholder="Enter Email" name="Email" required>
+	      <input type="text" placeholder="Confirm Email" name="Email" required>
+	      <input type="password" placeholder="Enter Password" name="psw" required>
+	      <input type="password" placeholder="Confirm Password" name="psw" required>
+	      <input type="submit" value="Send" class="button-send-sc" />
+	      <!--<a th:href="@{|/newUserSave?username=${getUserInfo.username}|}">Create Account</a>-->
+	      <!--<button type="submit">SignUp</button>-->
+	    </div>
+	 </form>
   </body>
 </html>

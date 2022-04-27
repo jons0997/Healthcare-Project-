@@ -7,6 +7,7 @@ import com.example.demo.form.NewUserForm;
 import com.example.demo.model.NewUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -21,14 +22,22 @@ public class NewUserDAO {
         return session.find(Account.class, userName);
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 	public void saveUser(NewUserForm userForm) {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		Account account = new Account();
 		account.setActive(true);
+		
 		account.setUserName(userForm.getUsername());
 		account.setEncrytedPassword(userForm.getPassword());
+		
+		/*
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		account.setUserName(username);
+		account.setEncrytedPassword(password);
+		*/
 		account.setUserRole("ROLE_EMPLOYEE");
 		session.persist(account);
 		session.flush();

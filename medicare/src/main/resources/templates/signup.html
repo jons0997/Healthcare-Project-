@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
     <title>Healthcare project</title>
@@ -7,28 +7,9 @@
   <!--<script src="index.js"></script>-->
   </head>
   <body>
-  	<th:block th:include="/_header"></th:block>
-  	<form method="POST" th:action="@{/signup}" th:object="${newUserForm}" enctype="multipart/form-data">
-        <table style="text-align:left;">
-             <tr>
-                <td>User Name *</td>
-                <td><input name="userName" th:field="*{newUserForm.username}"/></td>
-             </tr>
-             <tr>
-                <td>Password *</td>
-                <td><input type="password" name="password" th:field="*{newUserForm.password}"/></td>
-             </tr>
-             <tr>
-                 <td>&nbsp;</td>
-             <td>
-                 <input type="submit" value="Submit" />
-                 <input type="reset"  value="Reset" />
-             </td>
-          </tr>
-        </table>
-    </form>	
+  	<th:block th:include="/_header"></th:block>	
     <h2>Create Account</h2>
-    <form method="POST" th:action="@{/signup}"> <!--th:object="${newUserForm}"-->
+    <form method="POST" action="signupServlet"> <!--th:object="${newUserForm}"-->  <!--th:action="@{/signup}"--> 
 	    <div class="Sign">
 	      <input type="text" placeholder="Enter Username" name="Username" required>
 	      <input type="text" placeholder="Confirm Username" name="Username" required>

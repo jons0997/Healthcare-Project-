@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -119,6 +122,23 @@ public class MainController {
 	    model.addAttribute("newUserForm", new NewUserForm());
 	    System.out.println("NEWUSERFORM model attribute added");
 	   	return "signup";
+   }
+   
+   @WebServlet("/signupServlet")
+   public class SignupServlet extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request,
+	            HttpServletResponse response) throws ServletException, IOException {
+		   String username = request.getParameter("username");
+		   String password = request.getParameter("password");
+		   NewUserForm newuser = new NewUserForm();
+		   newuser.setUsername(username);
+		   newuser.setPassword(password);
+		   NewUserDAO newuserdao = new NewUserDAO();
+		   newuserdao.saveUser(newuser);
+		   System.out.println("signupServlet Called");
+	   }
    }
 
    // Product List

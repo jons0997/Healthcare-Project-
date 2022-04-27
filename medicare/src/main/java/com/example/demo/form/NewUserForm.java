@@ -16,6 +16,11 @@ public class NewUserForm {
         this.password = password;
         this.id = id;
     }
+    
+    public NewUserForm(String username, String password) {
+    	this.username = username;
+    	this.password = password;
+    }
 
 	public String getUsername() {
 		return username;
@@ -48,4 +53,5 @@ public class NewUserForm {
     public void setValid(boolean valid) {
         this.valid = valid;
     }
+
 }

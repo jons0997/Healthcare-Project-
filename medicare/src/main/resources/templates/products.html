@@ -6,12 +6,23 @@
   <link rel="stylesheet" href="style.css">
   <script src="index.js"></script>
   <ul class="topnav">
-    <li><a href="Index.html" id="index">Medicare</a></li>
-    <li><a href="About.html" id="About">About</a></li>
-    <li><a href="Contact.html" id="Contact">Contact</a></li>
-    <li><a class="active" href="Products.html" id="Products">View Products</a></li>
-    <li class="right"><a href="Login.html" id="Login">Login</a></li>
-    <li class="right"><a href="SignUp.html" id="SignUp.">Sign Up</a></li>
+    <li><a href="/" id="index">Medicare</a></li>
+    <li><a href="about" id="About">About</a></li>
+    <li><a href="contact" id="Contact">Contact</a></li>
+    <li><a class="active" href="products" id="Products">View Products</a></li>
+    <li class="right">
+	    <th:block sec:authorize="!isAuthenticated()">
+	    	<a th:href="@{/admin/login}">Login</a>
+	    </th:block>
+    <!--<a href="login" id="Login">Login</a></li>-->
+    <!--<li class="right"><a href="signup" id="SignUp">Sign Up</a></li>-->
+    <th:block sec:authorize="!isAuthenticated()">
+    	<a th:href="@{/signup}">Create Account</a>
+    </th:block>
+    <th:block sec:authorize="isAuthenticated()">
+         <a th:href="@{/admin/logout}">Logout</a>
+    </th:block>
+    <!--<li class="right"><a th:href="@{/admin/logout}">Logout</a></li>-->
   </ul>
   </head>
   <body>

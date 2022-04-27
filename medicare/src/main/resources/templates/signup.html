@@ -8,31 +8,30 @@
   </head>
   <body>
   	<th:block th:include="/_header"></th:block>
-  	<form method="POST"
-        th:action="@{/j_spring_security_check}">
-        <table>
+  	<form method="POST" th:action="@{/signup}" th:object="${newUserForm}" enctype="multipart/form-data">
+        <table style="text-align:left;">
              <tr>
                 <td>User Name *</td>
-                <td><input name="userName" /></td>
+                <td><input name="userName" th:field="*{newUserForm.username}"/></td>
              </tr>
              <tr>
                 <td>Password *</td>
-                <td><input type="password" name="password" /></td>
+                <td><input type="password" name="password" th:field="*{newUserForm.password}"/></td>
              </tr>
              <tr>
                  <td>&nbsp;</td>
              <td>
-                 <input type="submit" value="Sign Up" />
+                 <input type="submit" value="Submit" />
                  <input type="reset"  value="Reset" />
              </td>
           </tr>
         </table>
     </form>	
     <h2>Create Account</h2>
-    <form method="POST" th:action="@{/signup}">
+    <form method="POST" th:action="@{/signup}"> <!--th:object="${newUserForm}"-->
 	    <div class="Sign">
-	      <input type="text" placeholder="Enter Email" name="Email" required>
-	      <input type="text" placeholder="Confirm Email" name="Email" required>
+	      <input type="text" placeholder="Enter Username" name="Username" required>
+	      <input type="text" placeholder="Confirm Username" name="Username" required>
 	      <input type="password" placeholder="Enter Password" name="psw" required>
 	      <input type="password" placeholder="Confirm Password" name="psw" required>
 	      <input type="submit" value="Send" class="button-send-sc" />

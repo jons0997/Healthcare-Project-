@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.demo.dao.OrderDAO;
 import com.example.demo.dao.ProductDAO;
+import com.example.demo.dao.NewUserDAO;
 import com.example.demo.entity.Product;
 import com.example.demo.form.CustomerForm;
 import com.example.demo.form.NewUserForm;
@@ -17,6 +18,8 @@ import com.example.demo.model.NewUserInfo;
 import com.example.demo.pagination.PaginationResult;
 import com.example.demo.utils.Utils;
 import com.example.demo.validator.CustomerFormValidator;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +43,9 @@ public class MainController {
 
    @Autowired
    private ProductDAO productDAO;
+   
+   @Autowired
+   private NewUserDAO newUserDAO;
 
    @Autowired
    private CustomerFormValidator customerFormValidator;
@@ -109,6 +115,9 @@ public class MainController {
    // GET: Show Sign up Page
    @RequestMapping(value= { "/signup" }, method = RequestMethod.GET)
    		public String signup(Model model) {
+	    System.out.println("@REQUESTMAPPING SIGNUP called");
+	    model.addAttribute("newUserForm", new NewUserForm());
+	    System.out.println("NEWUSERFORM model attribute added");
 	   	return "signup";
    }
 
@@ -257,19 +266,30 @@ public class MainController {
 		   @ModelAttribute("newUserForm") @Validated NewUserForm newUserForm, //
 		   BindingResult result, //
 		   final RedirectAttributes redirectAttributes) {
+	   //model.addAttribute(newUserForm);
 	   
 	   if (result.hasErrors()) {
 		   newUserForm.setValid(false);
 		   // Forward to reenter new user info
 		   return "signup";
 	   }
-	   
-	   newUserForm.setValid(true);
+	   try {
+		   newUserDAO.saveUser(newUserForm);
+	   }
+	   catch(Exception e) {
+		   Throwable rootCause = ExceptionUtils.getRootCause(e);
+	       String message = rootCause.getMessage();
+	       model.addAttribute("errorMessage", message);
+	       // Show signup form.
+	       return "signup";
+	   }
+	   //newUserForm.setValid(true);
 	   
 	   //NEED TO FIGURE OUT SAVING USER BELOW
-	   NewUserInfo userInfo = Utils.getUserInfo(request);
+	   //NewUserInfo userInfo = Utils.getUserInfo(request);
 	   System.out.println("SIGNUP CALLED");
-	   //System.out.println(userInfo.getUsername());
+	   System.out.println("newUserForm.getUsername() is "+newUserForm.getUsername());
+	   //System.out.println(userInfo.getUsername() +"    "+ userInfo.getId());
 	   //UserInfo userInfo = "";
 	   return "redirect:/";
    }

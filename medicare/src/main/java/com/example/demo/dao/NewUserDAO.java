@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.example.demo.entity.Account;
+import com.example.demo.form.NewUserForm;
 import com.example.demo.model.NewUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,16 @@ public class NewUserDAO {
         return session.find(Account.class, userName);
     }
 
-    public void saveUser(NewUserInfo userInfo) {
-    	
-    }
+    @Transactional(rollbackFor = Exception.class)
+	public void saveUser(NewUserForm userForm) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Account account = new Account();
+		account.setActive(true);
+		account.setUserName(userForm.getUsername());
+		account.setEncrytedPassword(userForm.getPassword());
+		account.setUserRole("ROLE_EMPLOYEE");
+		session.persist(account);
+		session.flush();
+	}
 }

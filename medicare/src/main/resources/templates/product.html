@@ -47,6 +47,13 @@
                </td>
             </tr>
             <tr>
+            	<td>Category *</td>
+            	<td><input th:field="*{category}"/></td>
+            	<td>
+            		<span class="error-message" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">..</span>
+            	</td>
+            </tr>
+            <tr>
                <td>Image</td>
                <td>
                   <img th:src="@{|/productImage?code=${productForm.code}|}" width="100"/>

@@ -66,16 +66,6 @@ public class MainController {
 
    }
 
-   @RequestMapping("/403")
-   public String accessDenied() {
-      return "/403";
-   }
-
-   @RequestMapping("/")
-   public String home() {
-      return "index";
-   }
-   
    @RequestMapping("about")
    public String about() {
       return "about";
@@ -106,11 +96,22 @@ public class MainController {
       return "logout";
    }
    
+   @RequestMapping("/403")
+   public String accessDenied() {
+      return "/403";
+   }
+
+   @RequestMapping("/")
+   public String home() {
+      return "index";
+   }
+   
    // GET: Show Sign up Page
    @RequestMapping(value= { "/signup" }, method = RequestMethod.GET)
    		public String signup(Model model) {
 	   	return "signup";
    }
+
    // Product List
    @RequestMapping({ "/productList" })
    public String listProductHandler(Model model, //
@@ -124,6 +125,48 @@ public class MainController {
 
       model.addAttribute("paginationProducts", result);
       return "productList";
+   }
+   
+   //3 request mappings below this are for sorting by category
+   
+   @RequestMapping ({"/productListAnalgesic"})
+   public String listAnalgesicProductHandler(Model model, //
+		   @RequestParam(value="category", defaultValue="Analgesic") String category,
+		   @RequestParam(value="page", defaultValue="1") int page) {
+	   final int maxResult = 5;
+	   final int maxNavigationPage = 10;
+	   
+	   PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
+	   model.addAttribute("paginationProducts", result);
+	   //return "productListAnalgesic";
+	   return "productList";
+	   }
+   
+   @RequestMapping ({"/productListAntipyretic"})
+   public String listAntipyreticProductHandler(Model model, //
+		   @RequestParam(value="category", defaultValue="Antipyretic") String category,
+		   @RequestParam(value="page", defaultValue="1") int page) {
+	   final int maxResult = 5;
+	   final int maxNavigationPage = 10;
+	   
+	   //PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
+	   PaginationResult<ProductInfo> result2 = productDAO.queryAntipyretics(page, maxResult, maxNavigationPage);
+	   model.addAttribute("paginationProducts", result2);
+	   //return "productListAntipyretic";
+	   return "productList";
+   }
+   
+   @RequestMapping ({"/productListAntibiotic"})
+   public String listAntibioticProductHandler(Model model, //
+		   @RequestParam(value="category", defaultValue="Antibiotic") String category,
+		   @RequestParam(value="page", defaultValue="1") int page) {
+	   final int maxResult = 5;
+	   final int maxNavigationPage = 10;
+	   
+	   PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
+	   model.addAttribute("paginationProducts", result);
+	   //return "productListAntibiotic";
+	   return "productList";
    }
 
    @RequestMapping({ "/buyProduct" })
@@ -207,7 +250,7 @@ public class MainController {
       return "shoppingCartCustomer";
    }
 
-   // POST: Save new user
+   // POST: Save new user (STILL WORK IN PROGRESS)
    @RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
    public String newUserSave(HttpServletRequest request, //
 		   Model model, //

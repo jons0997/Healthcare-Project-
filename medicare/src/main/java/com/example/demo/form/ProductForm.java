@@ -7,6 +7,7 @@ public class ProductForm {
     private String code;
     private String name;
     private double price;
+    private String category;
 
     private boolean newProduct = false;
 
@@ -21,6 +22,7 @@ public class ProductForm {
         this.code = product.getCode();
         this.name = product.getName();
         this.price = product.getPrice();
+        this.category = product.getCategory();
     }
 
     public String getCode() {
@@ -47,6 +49,14 @@ public class ProductForm {
         this.price = price;
     }
 
+    public String getCategory() {
+    	return this.category;
+    }
+    
+    public void setCategory(String category) {
+    	this.category = category;
+    }
+    
     public MultipartFile getFileData() {
         return fileData;
     }

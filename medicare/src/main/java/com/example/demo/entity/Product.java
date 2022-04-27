@@ -26,6 +26,9 @@ public class Product implements Serializable {
 
     @Column(name = "Price", nullable = false)
     private double price;
+    
+    @Column(name = "Category")
+    private String category;
 
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
@@ -70,6 +73,14 @@ public class Product implements Serializable {
         this.createDate = createDate;
     }
 
+    public String getCategory() {
+    	return category;
+    }
+    
+    public void setCategory(String category) {
+    	this.category=category;
+    }
+    
     public byte[] getImage() {
         return image;
     }

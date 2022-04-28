@@ -46,6 +46,12 @@ public class ProductDAO {
         }
         return new ProductInfo(product.getCode(), product.getName(), product.getPrice(), product.getCategory());
     }
+    
+    //DELETE PRODUCT FROM DATABASE (WORK IN PROGRESS)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public void delete(ProductForm productForm) {
+    	
+    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void save(ProductForm productForm) {

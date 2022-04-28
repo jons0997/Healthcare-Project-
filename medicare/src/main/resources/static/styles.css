@@ -113,7 +113,7 @@ p.medicines {
 	padding-left: 295px;
 	border-bottom: 3px solid silver;
 }
-table.viewed {
+tr,td,table.viewed {
 	background-color: white;
 	border-collapse: collapse;
 	border: 2px solid black;

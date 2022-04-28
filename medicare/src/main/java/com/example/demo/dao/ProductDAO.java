@@ -50,7 +50,17 @@ public class ProductDAO {
     //DELETE PRODUCT FROM DATABASE (WORK IN PROGRESS)
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(ProductForm productForm) {
-    	
+    	Session session = this.sessionFactory.getCurrentSession();
+    	String code = productForm.getCode();
+    	Product product = null;
+    	if (code != null) {
+    		product = this.findProduct(code);
+    	}
+    	if (product == null) {
+    		System.out.println("PRODUCT == NULL");
+    	}
+    	session.delete(product);
+    	session.flush();
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)

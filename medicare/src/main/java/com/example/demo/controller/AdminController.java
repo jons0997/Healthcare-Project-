@@ -31,6 +31,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Transactional
 public class AdminController {
 
+	   @RequestMapping("admin/about")
+	   public String about() {
+	      return "about";
+	   } 
+	   
+	   @RequestMapping("admin/contact")
+	   public String contact() {
+		  return "contact";
+		   }
+	   
+	   @RequestMapping("admin/productList")
+	   public String products() {
+	      return "products";
+			   } 
+	   	
    @Autowired
    private OrderDAO orderDAO;
 

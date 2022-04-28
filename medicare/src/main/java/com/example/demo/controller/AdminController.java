@@ -43,7 +43,7 @@ public class AdminController {
 	   
 	   @RequestMapping("admin/productList")
 	   public String products() {
-	      return "products";
+	      return "productList";
 			   } 
 	   	
    @Autowired
@@ -147,6 +147,23 @@ public class AdminController {
       return "redirect:/productList";
    }
 
+   @RequestMapping(value = { "/admin/product/delete "}, method = RequestMethod.POST)
+   public String productDelete(Model model, //
+		   @ModelAttribute("productForm") @Validated ProductForm productForm, //
+		   BindingResult result, //
+		   final RedirectAttributes redirectAttributes) {
+	   	   try {
+	   		   productDAO.delete(productForm);
+	   	   } catch (Exception e) {
+	   		 Throwable rootCause = ExceptionUtils.getRootCause(e);
+	         String message = rootCause.getMessage();
+	         model.addAttribute("errorMessage", message);
+	         // Show product form.
+	         return "product";
+	   	   }
+	   return "redirect:/productList";
+   }
+   
    @RequestMapping(value = { "/admin/order" }, method = RequestMethod.GET)
    public String orderView(Model model, @RequestParam("orderId") String orderId) {
       OrderInfo orderInfo = null;

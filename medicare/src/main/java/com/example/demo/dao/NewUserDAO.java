@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Transactional
 @Repository
 public class NewUserDAO {
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -24,13 +28,16 @@ public class NewUserDAO {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 	public void saveUser(NewUserForm userForm) {
+    	System.out.println("userForm.getUsername "+userForm.getUsername());
+    	System.out.println("userForm.getPassword "+userForm.getPassword());
 		Session session = this.sessionFactory.getCurrentSession();
 
 		Account account = new Account();
+		String encodedPassword = bCryptPasswordEncoder.encode(userForm.getPassword());
 		account.setActive(true);
-		
 		account.setUserName(userForm.getUsername());
-		account.setEncrytedPassword(userForm.getPassword());
+		account.setEncrytedPassword(encodedPassword);
+		account.setUserRole("ROLE_USER");
 		
 		/*
 		String username = request.getParameter("username");
@@ -38,7 +45,7 @@ public class NewUserDAO {
 		account.setUserName(username);
 		account.setEncrytedPassword(password);
 		*/
-		account.setUserRole("ROLE_EMPLOYEE");
+		
 		session.persist(account);
 		session.flush();
 	}

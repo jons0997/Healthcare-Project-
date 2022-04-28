@@ -3,16 +3,22 @@
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
    <p>Categories</p>
   <div class="btn-list">
+  <!--
   <button><a href="productList">Antipyretics</a></button>
   <button><a href="productList">Analgesics</a></button>
   <button><a href="productList">Antibiotics</a></button>
+    -->
+  
   <th:block sec:authorize="hasRole('ROLE_MANAGER')">
+  	<button>
       <a th:href="@{/admin/product}">
       Create Product
       </a>
-      |
+    </button>
   </th:block>
-  <a th:href="@{/productListAntipyretic}">TH:Antipyretics</a>
+  <button><a th:href="@{/productListAntipyretic}">Antipyretics</a></button>
+  <button><a th:href="@{/productListAntibiotic}">Antibiotics</a></button>
+  <button><a th:href="@{/productListAnalgesic}">Analgesics</a></button>
   </div> 
   <div class="Pictures">
     <img class="mySlides" th:src="@{pics/Best-online-Medicine-Delivery-App.jpg}"style="width = 100%">

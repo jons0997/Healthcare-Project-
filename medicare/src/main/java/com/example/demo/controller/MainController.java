@@ -37,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Controller
 @Transactional
 public class MainController {
@@ -100,6 +102,7 @@ public class MainController {
       return "signup";
    }
    
+   
    @RequestMapping("logout")
    public String logout() {
       return "logout";
@@ -113,32 +116,6 @@ public class MainController {
    @RequestMapping("/")
    public String home() {
       return "index";
-   }
-   
-   // GET: Show Sign up Page
-   @RequestMapping(value= { "/signup" }, method = RequestMethod.GET)
-   		public String signup(Model model) {
-	    System.out.println("@REQUESTMAPPING SIGNUP called");
-	    model.addAttribute("newUserForm", new NewUserForm());
-	    System.out.println("NEWUSERFORM model attribute added");
-	   	return "signup";
-   }
-   
-   @WebServlet("/signupServlet")
-   public class SignupServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-
-	protected void doPost(HttpServletRequest request,
-	            HttpServletResponse response) throws ServletException, IOException {
-		   String username = request.getParameter("username");
-		   String password = request.getParameter("password");
-		   NewUserForm newuser = new NewUserForm();
-		   newuser.setUsername(username);
-		   newuser.setPassword(password);
-		   NewUserDAO newuserdao = new NewUserDAO();
-		   newuserdao.saveUser(newuser);
-		   System.out.println("signupServlet Called");
-	   }
    }
 
    // Product List
@@ -165,10 +142,10 @@ public class MainController {
 	   final int maxResult = 5;
 	   final int maxNavigationPage = 10;
 	   
-	   PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
+	   PaginationResult<ProductInfo> result = productDAO.queryAnalgesics(page, maxResult, maxNavigationPage);
 	   model.addAttribute("paginationProducts", result);
-	   //return "productListAnalgesic";
-	   return "productList";
+	   return "productListAnalgesic";
+	   //return "productList";
 	   }
    
    @RequestMapping ({"/productListAntipyretic"})
@@ -181,8 +158,9 @@ public class MainController {
 	   //PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
 	   PaginationResult<ProductInfo> result2 = productDAO.queryAntipyretics(page, maxResult, maxNavigationPage);
 	   model.addAttribute("paginationProducts", result2);
-	   //return "productListAntipyretic";
-	   return "productList";
+	   System.out.println("result2 is "+result2.getList());
+	   return "productListAntipyretic";
+	   //return "productList";
    }
    
    @RequestMapping ({"/productListAntibiotic"})
@@ -192,10 +170,10 @@ public class MainController {
 	   final int maxResult = 5;
 	   final int maxNavigationPage = 10;
 	   
-	   PaginationResult<ProductInfo> result = productDAO.queryProducts(page, maxResult, maxNavigationPage, category);
+	   PaginationResult<ProductInfo> result = productDAO.queryAntibiotics(page, maxResult, maxNavigationPage);
 	   model.addAttribute("paginationProducts", result);
-	   //return "productListAntibiotic";
-	   return "productList";
+	   return "productListAntibiotic";
+	   //return "productList";
    }
 
    @RequestMapping({ "/buyProduct" })
@@ -290,6 +268,7 @@ public class MainController {
 	   
 	   if (result.hasErrors()) {
 		   newUserForm.setValid(false);
+		   System.out.println("result.hasErrors in @RequestMapping /signupSave");
 		   // Forward to reenter new user info
 		   return "signup";
 	   }
@@ -308,7 +287,8 @@ public class MainController {
 	   //NEED TO FIGURE OUT SAVING USER BELOW
 	   //NewUserInfo userInfo = Utils.getUserInfo(request);
 	   System.out.println("SIGNUP CALLED");
-	   System.out.println("newUserForm.getUsername() is "+newUserForm.getUsername());
+	   //System.out.println("newUserForm.getUsername() is "+newUserForm.getUsername());
+	   System.out.println("request.getParameter('username') is "+request.getParameter("username"));
 	   //System.out.println(userInfo.getUsername() +"    "+ userInfo.getId());
 	   //UserInfo userInfo = "";
 	   return "redirect:/";

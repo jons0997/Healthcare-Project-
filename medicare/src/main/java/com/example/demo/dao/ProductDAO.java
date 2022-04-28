@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 
 import javax.persistence.NoResultException;
@@ -65,6 +67,7 @@ public class ProductDAO {
         product.setCode(code);
         product.setName(productForm.getName());
         product.setPrice(productForm.getPrice());
+        product.setCategory(productForm.getCategory());
 
         if (productForm.getFileData() != null) {
             byte[] image = null;
@@ -109,13 +112,31 @@ public class ProductDAO {
     }
     
     public PaginationResult<ProductInfo> queryAntipyretics(int page, int maxResult, int maxNavigationPage){
-    	//String sql = "SELECT * FROM medicare.products WHERE CATEGORY = 'ANTIPYRETIC'";
-    	String sql = "SELECT new "+ProductInfo.class.getName()+" (p.code, p.name, p.price, p.category) " + " from " + Product.class.getName() + " p " + " where p.category = 'ANTIPYRETIC'";
+    	String sql = "SELECT new "+ProductInfo.class.getName()+" (p.code, p.name, p.price, p.category) " + " from " + Product.class.getName() + " p " + " where p.category = 'Antipyretics'";
     	Session session = this.sessionFactory.getCurrentSession();
     	Query<ProductInfo> query = session.createQuery(sql, ProductInfo.class);
-    	System.out.println("QUERY IS "+query);
-    	System.out.println("QUERY class IS "+query.getClass());
+    	//Query<ProductInfo> query = session.createQuery(query2, ProductInfo.class);
+    	System.out.println("FIRST RESULT IN QUERY IS "+query.getFirstResult());
+    	System.out.println("QUERY LIST IS "+query.getResultList());
     	System.out.println("QUERY IS "+query.getQueryString());
+        return new PaginationResult<ProductInfo>(query,page,maxResult,maxNavigationPage);
+    }
+    
+    public PaginationResult<ProductInfo> queryAnalgesics(int page, int maxResult, int maxNavigationPage){
+    	String sql = "SELECT new " + ProductInfo.class.getName()+" (p.code, p.name, p.price, p.category) " + " from " + Product.class.getName() + " p " + " where p.category = 'Analgesics'";
+    	Session session = this.sessionFactory.getCurrentSession();
+    	Query<ProductInfo> query = session.createQuery(sql, ProductInfo.class);
+    	//Query<ProductInfo> query = session.createQuery(query2, ProductInfo.class);
+    	System.out.println("FIRST RESULT IN QUERY IS "+query.getFirstResult());
+    	System.out.println("QUERY LIST IS "+query.getResultList());
+    	System.out.println("QUERY IS "+query.getQueryString());
+        return new PaginationResult<ProductInfo>(query,page,maxResult,maxNavigationPage);
+    }
+    
+    public PaginationResult<ProductInfo> queryAntibiotics(int page, int maxResult, int maxNavigationPage){
+    	String sql = "SELECT new " + ProductInfo.class.getName()+" (p.code, p.name, p.price, p.category) "+" from " + Product.class.getName() + " p " + " where p.category = 'Antibiotics'";
+    	Session session = this.sessionFactory.getCurrentSession();
+    	Query<ProductInfo> query = session.createQuery(sql, ProductInfo.class);
         return new PaginationResult<ProductInfo>(query,page,maxResult,maxNavigationPage);
     }
 }

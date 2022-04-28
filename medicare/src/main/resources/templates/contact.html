@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <title>Healthcare project</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="index.js"></script>
   <ul class="topnav">
     <li><a href="/" id="index">Medicare</a></li>
     <li><a href="about" id="About">About</a></li>
     <li><a class="active" href="contact" id="Contact">Contact</a></li>
-    <li><a href="products" id="Products">View Products</a></li>
+    <li><a href="productList" id="Products">View Products</a></li>
     <li class="right">
 	    <th:block sec:authorize="!isAuthenticated()">
 	    	<a th:href="@{/admin/login}">Login</a>

@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <title>Healthcare project</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="index.js"></script>
   <ul class="topnav">
     <li><a href="/" id="index">Medicare</a></li>
     <li><a class="active" href="about" id="About">About</a></li>
     <li><a href="contact" id="Contact">Contact</a></li>
-    <li><a href="products" id="Products">View Products</a></li>
+    <li><a href="productList" id="Products">View Products</a></li>
     <li class="right">
 	    <th:block sec:authorize="!isAuthenticated()">
 	    	<a th:href="@{/admin/login}">Login</a>
@@ -26,10 +26,14 @@
   </ul>
   </head>
   <body>
-    <p>
+    <div class="abouttxt">
+    
+        <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget dui ligula. Nunc interdum egestas quam id suscipit. In interdum posuere mauris non aliquet. Nunc non orci sagittis, sollicitudin quam in, placerat sem. In hac habitasse platea dictumst. Etiam lobortis porttitor turpis, id egestas lectus convallis id. Aliquam eu neque et orci interdum imperdiet. Suspendisse malesuada commodo odio nec porttitor. Nunc est libero, mollis varius iaculis id, dapibus non turpis.
 
 Aenean sed augue rutrum, sollicitudin massa in, tempus diam. Pellentesque vestibulum leo dolor, consectetur aliquam ex lobortis ut. Aliquam fringilla, ligula vel bibendum vulputate, neque lacus bibendum lacus, vel facilisis nisi diam nec leo. Donec eget felis nibh. Aliquam nec est id nisi bibendum vestibulum ac sit amet est. In bibendum, lacus eget ornare ullamcorper, erat leo consequat mi, eu condimentum neque ex sit amet justo. Cras auctor ligula urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
     </p>
+    
+    </div>
   </body>
 </html>
